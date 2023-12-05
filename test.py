@@ -18,7 +18,7 @@ app = dash.Dash(__name__)
 
 # Определяем макет
 app.layout = html.Div([
-    html.H1('Пользовательская активность', style={'textAlign': 'center'}),
+    html.H1('Продажа нефтепродуктов', style={'textAlign': 'center'}),
     dcc.Dropdown(
         id='date-dropdown',
         options=[
