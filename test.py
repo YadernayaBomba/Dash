@@ -67,3 +67,28 @@ def update_figures(selected_date):
 
     # Создание графика рассеивания с помощью Plotly
     scatter_plot_figure = px.scatter(df, x='Gas station number', y='Date', title='График рассеяния')
+
+    # Создание таблицы с данными
+    data_table = dash_table.DataTable(
+        columns=[{"name": i, "id": i} for i in df.columns],
+        data=df.to_dict('records'),
+        page_size=10,  # Количество строк на странице
+        style_table={'height': '300px', 'overflowY': 'auto'},
+        style_cell={
+            'textAlign': 'left',
+            'padding': '10px',
+            'minWidth': '100px', 'width': '100px', 'maxWidth': '100px',
+            'whiteSpace': 'normal'
+        },
+        style_header={
+            'backgroundColor': 'rgb(230, 230, 230)',
+            'fontWeight': 'bold'
+        }
+    )
+
+    return time_series_figure, pie_chart_figure, histogram, scatter_plot_figure, data_table
+
+
+# Запускаем веб-приложение
+if __name__ == '__main__':
+    app.run_server(debug=True)
