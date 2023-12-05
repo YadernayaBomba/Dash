@@ -42,7 +42,6 @@ app.layout = html.Div([
     html.Hr(),
 ], style={'padding': '20px'})
 
-
 # Определяем логику взаимодействия
 @app.callback(
     [Output('time-series', 'figure'),
@@ -52,3 +51,19 @@ app.layout = html.Div([
      Output('data-table', 'children')],
     [Input('date-dropdown', 'value')]
 )
+
+def update_figures(selected_date):
+    # Логика обновления данных и графиков
+    filtered_df = df.resample(selected_date, on='Date').sum().reset_index()
+
+    # Создание временного ряда с помощью Plotly
+    time_series_figure = px.line(filtered_df, x='Date', y='Price (rub)', title='График временного ряда')
+
+    # Создание круговой диаграммы с помощью Plotly
+    pie_chart_figure = px.pie(df, names='Product', title='Распределение продукции, %')
+
+    # Создание гистограммы с помощью Plotly
+    histogram = px.histogram(df, x='Product', title='Распределение продукции, шт')
+
+    # Создание графика рассеивания с помощью Plotly
+    scatter_plot_figure = px.scatter(df, x='Gas station number', y='Date', title='График рассеяния')
