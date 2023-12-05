@@ -36,3 +36,14 @@ app.layout = html.Div([
     dcc.Graph(id='scatter-plot'),
     html.Div(id='data-table')
 ], style={'padding': '20px'})
+
+
+# Определяем логику взаимодействия
+@app.callback(
+    [Output('time-series', 'figure'),
+     Output('pie-chart', 'figure'),
+     Output('histogram', 'figure'),
+     Output('scatter-plot', 'figure'),
+     Output('data-table', 'children')],
+    [Input('date-dropdown', 'value')]
+)
