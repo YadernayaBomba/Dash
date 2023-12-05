@@ -31,10 +31,15 @@ app.layout = html.Div([
         style={'width': '23%', 'margin': '0 auto'}
     ),
     dcc.Graph(id='time-series'),
+    html.Hr(),
     dcc.Graph(id='pie-chart'),
+    html.Hr(),
     dcc.Graph(id='histogram'),
+    html.Hr(),
     dcc.Graph(id='scatter-plot'),
-    html.Div(id='data-table')
+    html.Hr(),
+    html.Div(id='data-table'),
+    html.Hr(),
 ], style={'padding': '20px'})
 
 
